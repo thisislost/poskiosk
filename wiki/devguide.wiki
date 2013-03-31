@@ -61,9 +61,9 @@ You are now ready to build and run the project *poskiosk*.
 
 In the figure below the basic building blocks of the client application kiosk.
 
-  * <font Color="magenta">*Mauve*</font> highlighted in Java-Library.
-  * <font Color="blue">*Blue*</font> - program for JavaScript.
-  * <font Color="green">*Green*</font> - visuals files HTML, CSS and images.
+  * <font color="magenta">*Mauve*</font> - highlighted in Java-Library.
+  * <font color="blue">*Blue*</font> - program for JavaScript.
+  * <font color="green">*Green*</font> - visuals files HTML, CSS and images.
 
 https://poskiosk.googlecode.com/svn/wiki/devguide-front-end.png
 
