@@ -55,26 +55,26 @@ grant {
 <li><font color="blue"><b>Синим</b></font> – программы на JavaScript.</li>
 <li><font color="green"><b>Зеленым</b></font> – визуальные элементы файлы HTML, CSS и графические изображения.</li>
 </ul>
-<p></p>
+<p><img src="https://poskiosk.googlecode.com/svn/wiki/devguide-front-end.png"/></p>
 <p>Большинство элементов загружается на терминал по сети и расположены в каталоге <i>poskiosk\web</i>. Исключение с целью оптимизации начальной загрузки могут составлять Java библиотеки и драйвера. Элементы архитектуры подробно описаны ниже.</p>
 <h2>Расположение модулей</h2>
 <table>
-<tr><th>Модуль</th><th>Расположение</th><th>Описание</th></tr>
-<tr><td>Start page</td><td>index.jsp</td><td>Стартовая страница, загрузка main.js</td></tr>
-<tr><td>Main loader</td><td>scripts/main.js</td><td>Настройка приложения</td></tr>
-<tr><td>Script libraries</td><td>scripts/lib/-</td><td>Используемые JavaScript-библиотеки</td></tr> 
-<tr><td>Application</td><td>scripts/app.js</td><td>Общие переменные и события приложения</td></tr>
-<tr><td>Routers</td><td>scripts/routers/-</td><td>Контроллеры состояний приложения</td></tr>
-<tr><td>Devices</td><td>scripts/devices/-</td><td>Контроллеры устройств киоска</td></tr>
-<tr><td>Models</td><td>scripts/models/-</td><td>Модели и коллекции данных приложения</td></tr>
-<tr><td>Views</td><td>scripts/views/-</td><td>Представления для отображения на экране</td></tr>
-<tr><td>Locales</td><td>Scripts/nls/-</td><td>Многоязыковые и национальные формы</td></tr>
-<tr><td>JavaPOS Applet</td><td>appet/jposapplet.jar</td><td>Аппрет представления JavaPOS в JavaScript</td></tr>
-<tr><td>JavaPOS library</td><td>%jre7%/lib/ext/-</td><td>Связь контроллеров с драйверами JavaPOS</td></tr>
-<tr><td>Device drivers</td><td>%jre7%/lib/ext/-</td><td>Java-драйвера устройств киоска</td></tr>
-<tr><td>Template</td><td>templates</td><td>HTML шаблоны экранных форм</td></tr>
-<tr><td>Styles</td><td>styles</td><td>CSS стили экранных форм</td></tr>
-<tr><td>Images</td><td>images</td><td>Графические изображения</td></tr>
+<tr><th><i>Модуль</i></th><th><i>Расположение</i></th><th><i>Описание</i></th></tr>
+<tr><td><b>Start page</b></td><td><i>index.jsp</i></td><td>Стартовая страница, загрузка main.js</td></tr>
+<tr><td><b>Main loader</b></td><td><i>scripts/main.js</i></td><td>Настройка приложения</td></tr>
+<tr><td><b>Script libraries</b></td><td><i>scripts/lib/-</i></td><td>Используемые JavaScript-библиотеки</td></tr> 
+<tr><td><b>Application</b></td><td><i>scripts/app.js</i></td><td>Общие переменные и события приложения</td></tr>
+<tr><td><b>Routers</b></td><td><i>scripts/routers/-</i></td><td>Контроллеры состояний приложения</td></tr>
+<tr><td><b>Devices</b></td><td><i>scripts/devices/-</i></td><td>Контроллеры устройств киоска</td></tr>
+<tr><td><b>Models</b></td><td><i>scripts/models/-</i></td><td>Модели и коллекции данных приложения</td></tr>
+<tr><td><b>Views</b></td><td><i>scripts/views/-</i></td><td>Представления для отображения на экране</td></tr>
+<tr><td><b>Locales</b></td><td><i>scripts/nls/-</i></td><td>Многоязыковые и национальные формы</td></tr>
+<tr><td><b>JavaPOS Applet</b></td><td><i>appet/jposapplet.jar</i></td><td>Аппрет представления JavaPOS в JavaScript</td></tr>
+<tr><td><b>JavaPOS library</b></td><td><i><b>%jre7%</b>/lib/ext/-</i></td><td>Связь контроллеров с драйверами JavaPOS</td></tr>
+<tr><td><b>Device drivers</b></td><td><i><b>%jre7%</b>/lib/ext/-</i></td><td>Java-драйвера устройств киоска</td></tr>
+<tr><td><b>Template</b></td><td><i>templates</i></td><td>HTML шаблоны экранных форм</td></tr>
+<tr><td><b>Styles</b></td><td><i>styles</i></td><td>CSS стили экранных форм</td></tr>
+<tr><td><b>Images</b></td><td><i>images</i></td><td>Графические изображения</td></tr>
 </table>
 <h2>Main loader</h2>
 <p>Загружается на начальной странице <b>index.jsp</b></p>
