@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Test page for launching the applet via JNLP</title>
+        <script>
+            function exec() {
+                var s = device.traceDeviceOpen('BillAcceptor', 'BillAcceptor');
+                window.console && window.console.log(s);
+            }
+        </script>
+    </head>
+    <body>
+        <h3>Test page for launching the applet via JNLP</h3>
+        <!--
+        <script src="http://java.com/js/deployJava.js" language="Javascript"></script>
+        <script  language="Javascript">
+            var attributes = {
+                id:         "device",
+                code:       "${JNLP.APPLET.CLASS}",
+                archive:    "${JNLP.RESOURCES.MAIN.JAR}",
+                width:      ${JNLP.APPLET.WIDTH},
+                height:     ${JNLP.APPLET.HEIGHT}
+            };
+            var parameters = {${JNLP.APPLET.PARAMS}}; 
+            var version = "${JNLP_VM_VERSION}"; 
+            deployJava.runApplet(attributes, parameters, version);
+        </script>
+        -->
+        <!-- Or use the following applet element to launch the applet using jnlp_href -->
+        <!--
+        <applet id="device" width="${JNLP.APPLET.WIDTH}" height="${JNLP.APPLET.HEIGHT}">
+            <param name="jnlp_href" value="${JNLP.FILE}"/>
+        </applet>
+        -->
+        <!-- 
+        <object id="device" type="application/x-java-applet" height="${JNLP.APPLET.WIDTH}" width="${JNLP.APPLET.HEIGHT}">
+            <param name="code" value="${JNLP.APPLET.CLASS}"/>
+            <param name="archive" value="${JNLP.RESOURCES.MAIN.JAR}"/>
+            <param name="fileName" value="c:\JavaPOS\ReadMe.txt"/>
+            <param NAME="mayscript" VALUE="true">
+            Applet failed to run.  No Java plug-in was found.
+        </object>
+        -->
+        <object id="device" type="application/x-java-applet" height="${JNLP.APPLET.WIDTH}" width="${JNLP.APPLET.HEIGHT}">
+            <param name="jnlp_href" value="${JNLP.FILE}"/>
+            Applet failed to run.  No Java plug-in was found.
+        </object>
+        <input type="button" value="Exec" onclick="exec()"/>
+    </body>
+</html>
