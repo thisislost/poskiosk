@@ -1,0 +1,162 @@
+/* 
+ * Main Styles
+ * 
+ * Copyright (c) 2013 POSkiosk Team
+ * 
+ * Changes:
+ * 
+ * 23.03.2013 Maxim Ryabochkin Project skeleton
+ * 
+*/
+
+body { 
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+.header, .footer, .content {
+    width: 100%;
+    zoom: 1;
+    border-width: 0;
+}
+
+.header, .footer {
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 1000;
+    min-height: 128px;
+}
+
+.header {
+    top: 5px;
+    padding-top: -5px;
+}
+
+.footer {
+    bottom: -5px;
+    padding-bottom: 5px;
+}
+
+.content { 
+    padding: 128px 0px 128px 0px;
+    overflow: visible;
+    overflow-x: hidden;
+}
+
+.btn {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn:active {
+    margin: 2px -2px -2px 2px;
+}
+
+.left, .right {
+    position: absolute;
+    vertical-align: middle;
+    top: 0px;
+}
+
+.left {
+    left: 5px;
+}
+
+.right {
+    right: 5px;
+}
+
+.header .title {
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    display: block;
+    margin: 0;
+    padding: 30px 128px 0px 128px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.table {
+    width: 100%;
+    display: table;
+}
+
+.tr {
+    display: table-row;
+}
+
+.td {
+    display: table-cell;
+}
+
+.td .btn {
+    width: 100%;
+}
+
+.td .label {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+#home-btn, #info-btn, #back-btn, #forward-btn {
+    min-height: 128px;
+    min-width: 128px;
+}
+
+#home-btn {
+    background:url(../images/home.png) no-repeat center; 
+}
+
+#info-btn {
+    background:url(../images/info.png) no-repeat center; 
+}
+
+#back-btn {
+    background:url(../images/back.png) no-repeat center; 
+}
+
+#forward-btn {
+    background:url(../images/forward.png) no-repeat center; 
+}
+
+#phone-btn, #antenna-btn, #internet-btn, #utilities-btn, #security-btn, #bank-btn {
+    min-width: 256px;
+    min-height: 256px;
+}
+
+#phone-btn {
+    background:url(../images/commutator.png) no-repeat center; 
+}
+
+#antenna-btn {
+    background:url(../images/antenna.png) no-repeat center; 
+}
+
+#internet-btn {
+    background:url(../images/intranet.png) no-repeat center; 
+}
+
+#utilities-btn {
+    background:url(../images/industry.png) no-repeat center; 
+}
+
+#security-btn {
+    background:url(../images/emergency.png) no-repeat center; 
+}
+
+#bank-btn {
+    background:url(../images/bank.png) no-repeat center; 
+}

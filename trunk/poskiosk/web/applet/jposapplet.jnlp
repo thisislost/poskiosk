@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp href="jposapplet.jnlp" spec="1.0+">
+    <information>
+        <title>JposApplet</title>
+        <vendor>poskiosk.org</vendor>
+        <homepage href="poskiosk.org"/>
+        <description>JavaPOS Universal Applet</description>
+        <description kind="short">JposApplet</description>
+    </information>
+    <update check="always"/>
+    <security>
+        <all-permissions/>
+    </security>
+    <resources>
+        <j2se version="1.7+"/>
+        <jar href="jposapplet.jar" main="true"/>
+    </resources>
+    <applet-desc height="1" main-class="jpos.applet.JposApplet" name="jposapplet" width="1">
+    </applet-desc>
+</jnlp>

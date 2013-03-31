@@ -1,0 +1,45 @@
+/* AUTOMATICALLY GENERATED ON Sun Mar 31 11:30:35 MSK 2013*/
+/* DO NOT EDIT */
+
+keystore "cacerts", "jks";
+
+grant codeBase "file:/C:/Program%20Files/Java/jre7/lib/ext/*" {
+  permission java.security.AllPermission;
+};
+
+grant codeBase "file:/C:/windows/Sun/Java/lib/ext/*" {
+  permission java.security.AllPermission;
+};
+
+grant {
+  permission java.lang.RuntimePermission "stopThread";
+  permission java.net.SocketPermission "localhost:1024-", "listen";
+  permission java.util.PropertyPermission "java.version", "read";
+  permission java.util.PropertyPermission "java.vendor", "read";
+  permission java.util.PropertyPermission "java.vendor.url", "read";
+  permission java.util.PropertyPermission "java.class.version", "read";
+  permission java.util.PropertyPermission "os.name", "read";
+  permission java.util.PropertyPermission "os.version", "read";
+  permission java.util.PropertyPermission "os.arch", "read";
+  permission java.util.PropertyPermission "file.separator", "read";
+  permission java.util.PropertyPermission "path.separator", "read";
+  permission java.util.PropertyPermission "line.separator", "read";
+  permission java.util.PropertyPermission "java.specification.version", "read";
+  permission java.util.PropertyPermission "java.specification.vendor", "read";
+  permission java.util.PropertyPermission "java.specification.name", "read";
+  permission java.util.PropertyPermission "java.vm.specification.version", "read";
+  permission java.util.PropertyPermission "java.vm.specification.vendor", "read";
+  permission java.util.PropertyPermission "java.vm.specification.name", "read";
+  permission java.util.PropertyPermission "java.vm.version", "read";
+  permission java.util.PropertyPermission "java.vm.vendor", "read";
+  permission java.util.PropertyPermission "java.vm.name", "read";
+};
+
+grant {
+  permission java.util.PropertyPermission "*", "read, write", signedBy "poskiosk";
+  permission java.io.FilePermission "<<ALL FILES>>", "read", signedBy "poskiosk";
+  permission java.net.SocketPermission "[0:0:0:0:0:0:0:1]:*", "accept, resolve", signedBy "poskiosk";
+  permission java.lang.RuntimePermission "modifyThreadGroup", signedBy "poskiosk";
+  permission java.lang.RuntimePermission "modifyThread", signedBy "poskiosk";
+};
+
