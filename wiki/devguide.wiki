@@ -10,9 +10,9 @@
 
 The package consists of the following projects:
 
-  * *Poskiosk* - J2EE application is started in Tomcat or GlassFish. Management program includes a JavaScript kiosk modules, monitoring and payments order.
-  * *Jposapplet* - Java applet provides access to use JavaPOS drivers from JavaScript environment
-  * *Simulatorjpos* - A set of service-simulation for different devices
+  * *poskiosk* - J2EE application is started in Tomcat or GlassFish. Management program includes a JavaScript kiosk modules, monitoring and payments order.
+  * *jposapplet* - Java applet provides access to use JavaPOS drivers from JavaScript environment
+  * *simulatorjpos* - A set of service-simulation for different devices
 
 You must have installed JDK 1.7.0, NetBeans 7.2+ and runtime Tomcat or GlassFish. Trace application in the browser to be used on the kiosk.
 
@@ -61,7 +61,7 @@ You are now ready to build and run the project *poskiosk*.
 
 In the figure below the basic building blocks of the client application kiosk.
 
-  * <font color="magenta">*Mauve*</font> - highlighted in Java-Library.
+  * <font color="maroon">*Maroon*</font> - highlighted in Java-Library.
   * <font color="blue">*Blue*</font> - program for JavaScript.
   * <font color="green">*Green*</font> - visuals files HTML, CSS and images.
 
@@ -87,4 +87,3 @@ Most items loaded on the terminal on the network and are located in _poskiosk\we
 ||* Template *||_templates_||HTML templates screens||
 ||* Styles *||_styles_||CSS styles of screens||
 ||* Images *||_images_||Graphic images||
-
