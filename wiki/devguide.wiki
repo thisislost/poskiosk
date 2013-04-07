@@ -25,7 +25,7 @@ Next, the description will be used the following ways
 In the first stage copy the contents of the package.
 
    # Copy all of the projects in the package home directory NetBeansProjects.
-   # Copy of the folder _poskiosk\lib_ file *jpos113-controls.jar* to the directory _*% jdk7%*\jre\lib\ext_.
+   # Copy of the folder _poskiosk\lib_ file *jpos113.jar* to the directory _*% jdk7%*\jre\lib\ext_.
    # Copy of the folder _poskiosk\lib_ files *jpos113.jar*, *xercesImpl.jar*, *xml-apis.jar* to the directory _*%jre7%*\lib\ext_.
    # Build project *simulatorjpos* and copy the jar-file from a directory _simulatorjpos\dist_ to the directory _*%jre7%*\lib\ext_.
    # Similar to build and copy to _*%jre7%*\lib\ext_ JavaPOS driver other used devices.
