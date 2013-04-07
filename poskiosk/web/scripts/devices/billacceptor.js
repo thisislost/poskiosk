@@ -20,11 +20,12 @@ define(['app',
     var dev = jpos.createDevice('BillAcceptor');
 
     app.on('afterstart', function() {
-//        var s = dev.traceDeviceOpen('BillAcceptor');
+//        var s = jpos.traceDeviceOpen('BillAcceptor', 'BillAcceptor');
 //        window.console & window.console.log(s);
-        dev.open("BillAcceptor");
-        dev.claim(0);
-        dev.setDeviceEnabled(true);
+          dev.open("BillAcceptor");
+          dev.claim(0);
+          dev.setDeviceEnabled(true);
+          dev.setCurrencyCode("RUB");
     });
 
     app.on('beforestop', function() {
