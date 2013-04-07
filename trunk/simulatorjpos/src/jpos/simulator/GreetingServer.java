@@ -62,14 +62,15 @@ public class GreetingServer extends Thread {
         @Override
         public void run() {
             try {
-                tracer.println("Requert received\n");
-                String header = readHeader();
-                tracer.println(header + "\n");
-                String url = getURIFromHeader(header);
-                HashMap<String, String> params = getParamsFromHeader(header);
-                tracer.println("Resource: " + url + "\n");
-                int code = send(url, params);
-                tracer.println("Result code: " + code + "\n");
+                readHeader();
+                readContent();
+                String s = "request: " + url;
+                for (String key: params.keySet()) {
+                    s = s + "\n" + key + ": " + params.get(key);
+                }
+                tracer.println(s);
+                sendResponse();
+                tracer.println("code: " + code + "\n" + "result: " + result);
             } catch (IOException e) {
                 tracer.print(e);
             } finally {
@@ -87,61 +88,75 @@ public class GreetingServer extends Thread {
             out = socket.getOutputStream();
         }
 
-        private String readHeader() throws IOException {
+        private void readHeader() throws IOException {
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-            StringBuilder builder = new StringBuilder();
             String ln;
+            int i;
+            String request = reader.readLine();
+            processRequest(request);
             while (true) {
                 ln = reader.readLine();
                 if (ln == null || ln.isEmpty()) {
                     break;
                 }
-                builder.append(ln);
-                builder.append(System.getProperty("line.separator"));
+                i = ln.indexOf(":");
+                if (i >= 0) {
+                    headers.put(ln.substring(0, i), ln.substring(i + 1).trim());
+                }
             }
-            return builder.toString();
         }
 
-        private String getURIFromHeader(String header) {
+        private void processRequest(String header) {
+            if (header == null) {
+                url = "";
+                return;
+            }
             int from = header.indexOf(" ") + 1;
             if (header.charAt(from) == '/') {
                 from++;
             }
             int to = header.indexOf(" ", from);
-            String uri = header.substring(from, to);
-            int paramIndex = uri.indexOf("?");
-            if (paramIndex != -1) {
-                uri = uri.substring(0, paramIndex);
+            url = header.substring(from, to);
+            int i = url.indexOf("?");
+            if (i != -1) {
+                processParams(url.substring(i + 1));
+                url = url.substring(0, i);
             }
-            return uri;
         }
 
-        private HashMap<String, String> getParamsFromHeader(String header) {
-            int from = header.indexOf(" ") + 1;
-            int to = header.indexOf(" ", from);
-            String uri = header.substring(from, to);
-            int paramIndex = uri.indexOf("?");
-            String[] params = null;
-            if (paramIndex != -1) {
-                params = uri.substring(paramIndex + 1).split("&");
-            }
-            HashMap<String, String> result = new HashMap<>();
-            if (params != null) {
-                for (String param : params) {
-                    int i = param.indexOf("=");
-                    if (i != -1) {
-                        result.put(param.substring(0, i), param.substring(i + 1));
-                    } else {
-                        result.put(param, "");
-                    }
+        private void processParams(String content) {
+            String[] sa = content.split("&");
+            for (String s : sa) {
+                int i = s.indexOf("=");
+                if (i != -1) {
+                    params.put(s.substring(0, i), s.substring(i + 1));
+                } else {
+                    params.put(s, "");
                 }
             }
-            return result;
         }
 
-        private int send(String url, HashMap<String, String> params) throws IOException {
-            int code;
-            String result;
+        private void readContent() throws IOException {
+            String clen = headers.get("Content-Length");
+            if (clen != null) {
+                int len = Integer.parseInt(clen);
+                char[] buffer = new char[len];
+                String ctype = headers.get("Content-Type");
+                int i = ctype.indexOf(";");
+                InputStreamReader reader;
+                if (i >= 0) {
+                    String charset = ctype.substring(i + 1).trim();
+                    reader = new InputStreamReader(in, charset);
+                } else {
+                    reader = new InputStreamReader(in);
+                }
+                reader.read(buffer, 0, len);
+                String content = new String(buffer);
+                processParams(content);
+            }
+        }
+
+        private void sendResponse() throws IOException {
             ServerResource resource = resources.get(url);
             String contentType = resourceContents.get(url);
 
@@ -161,13 +176,9 @@ public class GreetingServer extends Thread {
                 code = 404;
                 result = null;
             }
-            String header = getHeader(code, contentType, result);
+            String response = createResponse(contentType);
             PrintStream answer = new PrintStream(out, true, "utf-8");
-            answer.print(header);
-            if (result != null) {
-                answer.print(result);
-            }
-            return code;
+            answer.print(response);
         }
 
         /**
@@ -176,7 +187,7 @@ public class GreetingServer extends Thread {
          * @param code код результата отправки.
          * @return http заголовок ответа.
          */
-        private String getHeader(int code, String contentType, String content) {
+        private String createResponse(String contentType) {
             StringBuilder buffer = new StringBuilder();
             buffer.append("HTTP/1.1 ");
             buffer.append(code);
@@ -190,13 +201,16 @@ public class GreetingServer extends Thread {
             buffer.append(contentType);
             buffer.append("; charset=utf-8");
             buffer.append("\r\n");
-            if (content != null) {
+            if (result != null) {
                 buffer.append("Content-Length: ");
-                buffer.append(content.length());
+                buffer.append(result.length());
                 buffer.append("\r\n");
             }
             buffer.append("Connection: close\r\n");
             buffer.append("\r\n");
+            if (result != null) {
+                buffer.append(result);
+            }
             return buffer.toString();
         }
 
@@ -213,6 +227,11 @@ public class GreetingServer extends Thread {
         private Socket socket;
         private InputStream in = null;
         private OutputStream out = null;
+        private String url = null;
+        private HashMap<String, String> params = new HashMap<>();
+        private HashMap<String, String> headers = new HashMap<>();
+        private int code;
+        private String result;
     }
     private ServerSocket serverSocket;
     private HashMap<String, ServerResource> resources = new HashMap<>();
