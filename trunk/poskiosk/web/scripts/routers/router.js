@@ -29,8 +29,9 @@ define([
     'views/footer',
     'views/start',
     'views/group',
-    'devices/billacceptor'
-    ], function(app, $, _, Backbone, Header, Footer, Start, Group, billacceptor){
+    'devices/billacceptor',
+    'devices/posprinter'
+    ], function(app, $, _, Backbone, Header, Footer, Start, Group, billacceptor, posprinter){
 
         var Router =  Backbone.Router.extend({
         

@@ -8,4 +8,11 @@
         <product description="Bill Acceptor Simulator" name="BillAcceptor" url="http://poskiosk.org"/>
         <prop name="port" type="String" value="4001"/>
     </JposEntry>
+    <JposEntry logicalName="POSPrinter">
+        <creation factoryClass="jpos.simulator.ServiceInstanceFactory" serviceClass="jpos.simulator.POSPrinterService"/>
+        <vendor name="JavaPOS Kiosk" url="http://poskiosk.org"/>
+        <jpos category="POSPrinter" version="1.13"/>
+        <product description="POS Printer Simulator" name="POSPrinter" url="http://poskiosk.org"/>
+        <prop name="port" type="String" value="4002"/>
+    </JposEntry>
 </JposEntries>
