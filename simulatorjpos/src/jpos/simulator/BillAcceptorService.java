@@ -69,32 +69,6 @@ public class BillAcceptorService extends DeviceService implements BillAcceptorSe
                 return s;
             }
         });
-        greeting.registerResource("power", new GreetingServer.ServerResource() {
-            @Override
-            public String getResource(HashMap<String, String> params) {
-                String s = params.get("state");
-                int state;
-                if ("OFF".equalsIgnoreCase(s)) {
-                    state = JposConst.JPOS_PS_OFF;
-                    s = "OFF";
-                } else if ("OFFLINE".equalsIgnoreCase(s)) {
-                    state = JposConst.JPOS_PS_OFFLINE;
-                    s = "OFFLINE";
-                } else if ("OFF_OFFLINE".equalsIgnoreCase(s)) {
-                    state = JposConst.JPOS_PS_OFF_OFFLINE;
-                    s = "OFF_OFFLINE";
-                } else if ("ONLINE".equalsIgnoreCase(s)) {
-                    state = JposConst.JPOS_PS_ONLINE;
-                    s = "ONLINE";
-                } else {
-                    state = JposConst.JPOS_PS_UNKNOWN;
-                    s = "UNKNOWN";
-                }
-                tracer.println("Power state is " + s);
-                setPowerState(state);
-                return s;
-            }
-        });
     }
 
     @Override
@@ -196,12 +170,12 @@ public class BillAcceptorService extends DeviceService implements BillAcceptorSe
 
     @Override
     public String getDepositCashList() throws JposException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return ";10,50,100,500,1000,5000";
     }
 
     @Override
     public String getDepositCodeList() throws JposException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return "USD,EUR,RUB";
     }
 
     @Override
@@ -224,28 +198,6 @@ public class BillAcceptorService extends DeviceService implements BillAcceptorSe
     @Override
     public int getFullStatus() throws JposException {
         return fullStatus;
-    }
-
-    @Override
-    public int getPowerNotify() throws JposException {
-        return powerNotify;
-    }
-
-    @Override
-    public void setPowerNotify(int i) throws JposException {
-        if (deviceEnabled) {
-            throw new JposException(JposConst.JPOS_E_ILLEGAL,
-                    getErrorDescription(JposConst.JPOS_E_ILLEGAL));
-        }
-        powerNotify = i;
-        if (powerNotify == JposConst.JPOS_PN_ENABLED) {
-            fireEvent(new StatusUpdateEvent(eventCallbacks.getEventSource(), powerState));
-        }
-    }
-
-    @Override
-    public int getPowerState() throws JposException {
-        return powerState;
     }
 
     @Override
@@ -351,15 +303,6 @@ public class BillAcceptorService extends DeviceService implements BillAcceptorSe
     public void updateStatistics(String string) throws JposException {
         throw new JposException(JposConst.JPOS_E_ILLEGAL,
                 getErrorDescription(JposConst.JPOS_E_ILLEGAL));
-    }
-
-    public void setPowerState(int i) {
-        if (powerState != i) {
-            powerState = i;
-            if (powerNotify == JposConst.JPOS_PN_ENABLED) {
-                fireEvent(new StatusUpdateEvent(eventCallbacks.getEventSource(), powerState));
-            }
-        }
     }
 
     public void acceptCash(int i) {

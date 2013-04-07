@@ -3,6 +3,7 @@ package jpos.simulator;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 import jpos.JposConst;
 import jpos.JposException;
@@ -162,6 +163,32 @@ public class DeviceService implements BaseService, JposServiceInstance {
             throw new JposException(JposConst.JPOS_E_FAILURE,
                     getErrorDescription(JposConst.JPOS_E_FAILURE));
         }
+        greeting.registerResource("power", new GreetingServer.ServerResource() {
+            @Override
+            public String getResource(HashMap<String, String> params) {
+                String s = params.get("state");
+                int state;
+                if ("OFF".equalsIgnoreCase(s)) {
+                    state = JposConst.JPOS_PS_OFF;
+                    s = "OFF";
+                } else if ("OFFLINE".equalsIgnoreCase(s)) {
+                    state = JposConst.JPOS_PS_OFFLINE;
+                    s = "OFFLINE";
+                } else if ("OFF_OFFLINE".equalsIgnoreCase(s)) {
+                    state = JposConst.JPOS_PS_OFF_OFFLINE;
+                    s = "OFF_OFFLINE";
+                } else if ("ONLINE".equalsIgnoreCase(s)) {
+                    state = JposConst.JPOS_PS_ONLINE;
+                    s = "ONLINE";
+                } else {
+                    state = JposConst.JPOS_PS_UNKNOWN;
+                    s = "UNKNOWN";
+                }
+                tracer.println("Power state is " + s);
+                setPowerState(state);
+                return s;
+            }
+        });
         tracer.println("Simulator service started on port " + port);
     }
 
@@ -178,6 +205,34 @@ public class DeviceService implements BaseService, JposServiceInstance {
         } catch (JposException e) {
         }
         claimed = false;
+    }
+
+    public int getPowerNotify() throws JposException {
+        return powerNotify;
+    }
+
+    public void setPowerNotify(int i) throws JposException {
+        if (deviceEnabled) {
+            throw new JposException(JposConst.JPOS_E_ILLEGAL,
+                    getErrorDescription(JposConst.JPOS_E_ILLEGAL));
+        }
+        powerNotify = i;
+        if (powerNotify == JposConst.JPOS_PN_ENABLED) {
+            fireEvent(new StatusUpdateEvent(eventCallbacks.getEventSource(), powerState));
+        }
+    }
+
+    public int getPowerState() throws JposException {
+        return powerState;
+    }
+
+    public void setPowerState(int i) {
+        if (powerState != i) {
+            powerState = i;
+            if (powerNotify == JposConst.JPOS_PN_ENABLED) {
+                fireEvent(new StatusUpdateEvent(eventCallbacks.getEventSource(), powerState));
+            }
+        }
     }
 
     @Override
