@@ -38,7 +38,7 @@ grant {
 grant {
   permission java.util.PropertyPermission "*", "read, write", signedBy "poskiosk";
   permission java.io.FilePermission "<<ALL FILES>>", "read", signedBy "poskiosk";
-  permission java.net.SocketPermission "[0:0:0:0:0:0:0:1]:*", "accept, resolve", signedBy "poskiosk";
+  permission java.net.SocketPermission "localhost:*", "accept, resolve", signedBy "poskiosk";
   permission java.lang.RuntimePermission "modifyThreadGroup", signedBy "poskiosk";
   permission java.lang.RuntimePermission "modifyThread", signedBy "poskiosk";
 };

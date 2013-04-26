@@ -160,3 +160,11 @@ body {
 #bank-btn {
     background:url(../images/bank.png) no-repeat center; 
 }
+
+.digit-btn {
+    line-height: 128px;
+    min-height: 128px;
+    min-width: 128px;
+    background:url(../images/button.png) no-repeat center; 
+    font-size: 36px;
+}
