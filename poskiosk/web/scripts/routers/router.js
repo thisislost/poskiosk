@@ -29,9 +29,10 @@ define([
     'views/footer',
     'views/start',
     'views/group',
+    'views/payment',
     'devices/billacceptor',
     'devices/posprinter'
-    ], function(app, $, _, Backbone, Header, Footer, Start, Group, billacceptor, posprinter){
+    ], function(app, $, _, Backbone, Header, Footer, Start, Group, Payment, billacceptor, posprinter){
 
         var Router =  Backbone.Router.extend({
         
@@ -40,7 +41,8 @@ define([
                 '': 'start',
                 'start': 'start',
                 'group/:id': 'group',
-                'group/:id/:pageno': 'group'
+                'group/:id/:pageno': 'group',
+                'payment/:id': 'payment'
             },
             
             // Initialize router. Create common views
@@ -100,6 +102,22 @@ define([
                 // Set next and previos page on back and forward buttons
                 app.footer.setButtons((pageno == 0) ? '#start' : '#group/'+id+'/'+(pageno-1),
                     (pageno+1 < app.content.pagecount ? '#group/'+id+'/'+(pageno+1) : undefined));
+            },
+
+            // Show payment page
+            payment: function(id) {
+                var back;
+                if (app.content instanceof Group) {
+                    back = '#group/'+app.content.group+'/'+app.content.pageno;
+                } else {
+                    back = '#start';
+                }
+                // Set payment content
+                app.setContent(Payment, {
+                   id: id 
+                });
+                // Set next and previos page on back and forward buttons
+                app.footer.setButtons(back, "#accept");
             }
 
         });
