@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN" "jpos/res/jcl.dtd">
+<JposEntries>
+    <JposEntry logicalName="POSPower">
+        <creation factoryClass="jpos.ccp.ServiceInstanceFactory" serviceClass="jpos.ccp.POSPowerService"/>
+        <vendor name="IPPON" url="http://www.ippon.ru"/>
+        <jpos category="POSPower" version="1.13"/>
+        <product description="IPPON UPS Service" name="IPPON UPS" url="http://www.ippon.ru"/>
+        <prop name="portName" type="String" value="USB"/>
+    </JposEntry>
+</JposEntries>
