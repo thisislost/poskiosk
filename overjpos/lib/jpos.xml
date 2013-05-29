@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN" "jpos/res/jcl.dtd">
+<JposEntries>
+    <JposEntry logicalName="PINPad">
+        <creation factoryClass="jpos.over.ServiceInstanceFactory" serviceClass="jpos.over.PINPadService"/>
+        <vendor name="Over s.r.l." url="http://www.over.com"/>
+        <jpos category="PINPad" version="1.13"/>
+        <product description="OVER EPP 5115 Visa Pad" name="OVER EPP" url="http://www.over.com"/>
+        <prop name="portName" type="String" value="COM7"/>
+        <prop name="baudRate" type="String" value="57600"/>
+    </JposEntry>
+</JposEntries>
