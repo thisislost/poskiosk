@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN" "jpos/res/jcl.dtd">
+<JposEntries>
+    <JposEntry logicalName="MSR">
+        <creation factoryClass="jpos.ict3k5.ServiceInstanceFactory" serviceClass="jpos.ict3k5.MSRService"/>
+        <vendor name="Sankio Seiki Manufacturing Corporation, Ltd." url="http://www.sankyo-seiki.com"/>
+        <jpos category="PINPad" version="1.13"/>
+        <product description="ICT3K5 3R6940" name="ICT3K5" url="http://www.sankyo-seiki.com"/>
+        <prop name="portName" type="String" value="COM1"/>
+    </JposEntry>
+    <JposEntry logicalName="SmartCardRW">
+        <creation factoryClass="jpos.ict3k5.ServiceInstanceFactory" serviceClass="jpos.ict3k5.SmartCardRWService"/>
+        <vendor name="Sankio Seiki Manufacturing Corporation, Ltd." url="http://www.sankyo-seiki.com"/>
+        <jpos category="PINPad" version="1.13"/>
+        <product description="ICT3K5 3R6940" name="ICT3K5" url="http://www.sankyo-seiki.com"/>
+        <prop name="portName" type="String" value="COM1"/>
+    </JposEntry>
+</JposEntries>
