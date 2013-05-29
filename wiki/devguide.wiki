@@ -13,6 +13,13 @@ The package consists of the following projects:
   * *poskiosk* - J2EE application is started in Tomcat or GlassFish. Management program includes a JavaScript kiosk modules, monitoring and payments order.
   * *jposapplet* - Java applet provides access to use JavaPOS drivers from JavaScript environment
   * *simulatorjpos* - A set of service-simulation for different devices
+  * *ccjavapos* - CashCode bill acceptor device driver
+  * *ict3k5jpos* - ICT 3K5 card reader device driver
+  * *jcmjavapos* - JCM bill acceptor device driver
+  * *overjpos* - Over PINPad deveice driver
+  * *puloonjpos* - Puloon bill dispenser device driver
+  * *szztjpos* - SZZT PINPad device driver
+  * *upsjpos* - IPPON UPS device driver
 
 You must have installed JDK 1.7.0, NetBeans 7.2+ and runtime Tomcat or GlassFish. Trace application in the browser to be used on the kiosk.
 

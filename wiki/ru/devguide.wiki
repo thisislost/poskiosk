@@ -13,6 +13,13 @@
   * *poskiosk* – Приложение J2EE запускаемое в Tomcat или GlassFish. Содержит программы управления киоском на JavaScript и сервис мониторинга и осуществления платежей.
   * *jposapplet* – Java applet, предоставляющий доступ к запуски JavaPOS драйверов из JavaScript
   * *simulatorjpos* – Набор сервисов-симуляторов различных устройств
+  * *ccjavapos* - Драйвер купюроприемника CashCode 
+  * *ict3k5jpos* - Драйвер карт-ридера ICT 3K5 
+  * *jcmjavapos* - Драйвер купюроприемника JCM
+  * *overjpos* - Драйвер пин-пада Over
+  * *puloonjpos* - Драйвер диспенсара Puloon
+  * *szztjpos* - Драйвер пин-пада SZZT
+  * *upsjpos* - Драйвер UPS IPPON
 
 == Подготовка среды разработки ==
 
