@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN" "jpos/res/jcl.dtd">
+<JposEntries>
+    <JposEntry logicalName="BillDispenser LCDM-2000">
+        <creation factoryClass="jpos.puloon.ServiceInstanceFactory" serviceClass="jpos.puloon.BillDispenserServiceV1"/>
+        <vendor name="PULOON Technology Inc." url="http://www.puloon.com"/>
+        <jpos category="BillDispenser" version="1.13"/>
+        <product description="PULOON LCDM-2000 Cash Dispenser Unit" name="LCDM-2000" url="http://www.puloon.com"/>
+        <prop name="portName" type="String" value="COM3"/>
+        <prop name="baudRate" type="String" value="9600"/>
+        <prop name="cassette0" type="String" value="100 RUB"/>
+        <prop name="cassette1" type="String" value="1000 RUB"/>
+        <prop name="rejectInfluence" type="String" value="1"/>
+    </JposEntry>
+    <JposEntry logicalName="BillDispenser LCDM-1000">
+        <creation factoryClass="jpos.puloon.ServiceInstanceFactory" serviceClass="jpos.puloon.BillDispenserServiceV1"/>
+        <vendor name="PULOON Technology Inc." url="http://www.puloon.com"/>
+        <jpos category="BillDispenser" version="1.13"/>
+        <product description="PULOON LCDM-1000 Cash Dispenser Unit" name="LCDM-2000" url="http://www.puloon.com"/>
+        <prop name="portName" type="String" value="COM3"/>
+        <prop name="baudRate" type="String" value="9600"/>
+        <prop name="cassette0" type="String" value="100 RUB"/>
+        <prop name="rejectInfluence" type="String" value="1"/>
+    </JposEntry>
+    <JposEntry logicalName="BillDispenser LCDM-4000">
+        <creation factoryClass="jpos.puloon.ServiceInstanceFactory" serviceClass="jpos.puloon.BillDispenserServiceV2"/>
+        <vendor name="PULOON Technology Inc." url="http://www.puloon.com"/>
+        <jpos category="BillDispenser" version="1.13"/>
+        <product description="PULOON LCDM-4000 Cash Dispenser Unit" name="LCDM-2000" url="http://www.puloon.com"/>
+        <prop name="portName" type="String" value="COM3"/>
+        <prop name="baudRate" type="String" value="9600"/>
+        <prop name="cassette0" type="String" value="10 RUB"/>
+        <prop name="cassette1" type="String" value="100 RUB"/>
+        <prop name="cassette2" type="String" value="1000 RUB"/>
+        <prop name="cassette3" type="String" value="5000 RUB"/>
+        <prop name="rejectInfluence" type="String" value="1.5"/>
+    </JposEntry>
+    <JposEntry logicalName="BillDispenser ECDM-200">
+        <creation factoryClass="jpos.puloon.ServiceInstanceFactory" serviceClass="jpos.puloon.BillDispenserServiceV2"/>
+        <vendor name="PULOON Technology Inc." url="http://www.puloon.com"/>
+        <jpos category="BillDispenser" version="1.13"/>
+        <product description="PULOON ECDM-200 Cash Dispenser Unit" name="LCDM-2000" url="http://www.puloon.com"/>
+        <prop name="portName" type="String" value="COM3"/>
+        <prop name="baudRate" type="String" value="9600"/>
+        <prop name="cassette0" type="String" value="10 RUB"/>
+        <prop name="cassette1" type="String" value="100 RUB"/>
+        <prop name="rejectInfluence" type="String" value="1.5"/>
+    </JposEntry>
+    <JposEntry logicalName="BillDispenser LCDM-4000">
+        <creation factoryClass="jpos.puloon.ServiceInstanceFactory" serviceClass="jpos.puloon.BillDispenserServiceV2"/>
+        <vendor name="PULOON Technology Inc." url="http://www.puloon.com"/>
+        <jpos category="BillDispenser" version="1.13"/>
+        <product description="PULOON ECDM-400 Cash Dispenser Unit" name="LCDM-2000" url="http://www.puloon.com"/>
+        <prop name="portName" type="String" value="COM3"/>
+        <prop name="baudRate" type="String" value="9600"/>
+        <prop name="cassette0" type="String" value="10 RUB"/>
+        <prop name="cassette1" type="String" value="100 RUB"/>
+        <prop name="cassette2" type="String" value="1000 RUB"/>
+        <prop name="cassette3" type="String" value="5000 RUB"/>
+        <prop name="rejectInfluence" type="String" value="1.5"/>
+    </JposEntry>
+</JposEntries>
