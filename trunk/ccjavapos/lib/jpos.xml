@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN" "jpos/res/jcl.dtd">
+<JposEntries>
+    <JposEntry logicalName="BillAcceptor">
+        <creation factoryClass="jpos.cashcode.ServiceInstanceFactory" serviceClass="jpos.cashcode.BillAcceptorService"/>
+        <vendor name="CashCode" url="http://www.cashcode.com"/>
+        <jpos category="BillAcceptor" version="1.13"/>
+        <product description="CashCode SM Bill Validator" name="CashCode SM" url="http://www.cashcode.com"/>
+        <prop name="baudRate" type="String" value="9600"/>
+        <prop name="portName" type="String" value="COM1"/>
+        <prop name="restricted" type="String" value="5 RUB, 10 RUB"/>
+    </JposEntry>
+</JposEntries>
