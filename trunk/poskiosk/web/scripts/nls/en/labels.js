@@ -13,6 +13,6 @@
 
 define({
     
-    'about': 'Here information about POS Kiosk system'
+    'about': 'Here information about POS Kiosk system',
     
 });

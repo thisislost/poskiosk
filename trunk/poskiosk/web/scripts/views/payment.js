@@ -25,24 +25,33 @@ define([
     'text!templates/payment.html',
     'models/vendors',
     'views/keyboard'
-    ], function(app, $, _, Backbone, text, vendors, Keyboard) {
+], function(app, $, _, Backbone, text, vendors, Keyboard) {
 
     return Backbone.View.extend({
         initialize: function(options) {
             this.id = options.id;
-            this.model = vendors.get(this.id);
+            this.fieldno = options.fieldno;
+            this.vendor = vendors.get(this.id);
+            this.fields = this.vendor.getFields();
             this.template = _.template(text);
             this.keyboard = new Keyboard();
-            this.model.on('change', function() {
+            this.vendor.on('change', function() {
                 this.render();
             }, this);
         },
         render: function() {
-            var html = this.template(this.model.toJSON());
+            var field = this.fields[this.fieldno].toJSON(),
+                    data = _.extend(this.vendor.toJSON(), {field: field}),
+            html = this.template(data);
             this.$el.html(html);
-            this.keyboard.setElement(this.$el.find('.keyboard'));
-            this.keyboard.setInput(this.$el.find('input'));
-            this.keyboard.render();
+            var input = this.$el.find('.input');
+            if (field.inputmask) {
+                input.inputmask(field.inputmask);
+            }
+            this.keyboard.setElement(this.$el.find('.keyboard'))
+                    .setInput(input)
+                    .setKeys(field.keys)
+                    .render();
             return this;
         },
         close: function() {

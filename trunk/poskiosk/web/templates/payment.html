@@ -1,4 +1,13 @@
-<div><%=title%></div>
-<label for="contractno"><%=fields[0].title%></label>
-<input id="contractno" type="text" value=""/>
-<div class="keyboard"></div>
+<div class="table">
+    <div class="tr">
+        <div class="td payment-title">
+            <div class="label"><%=title%></div>
+            <div class="icon" style="background:url(images/vendors/<%=image%>) no-repeat center; min-width: 256px; min-height: 256px;">&nbsp;</div>
+        </div>
+        <div class="td payment-detail">
+            <label for="<%=field.id%>"><%=field.label%></label>
+            <input class="input" id="<%=field.id%>" type="text" value=""  pattern="<%=field.pattern || '.*'%>" title="<%=field.title%>" maxlength="<%=field.maxlength || 1024%>"/>
+            <div class="keyboard"></div>
+        </div>
+    </div>
+</div>

@@ -30,7 +30,7 @@ define([
         },
         initialize: function(options) {
             options = options || {};
-            this.keys = options.keys || ['123', '456', '789', '-0<'];
+            this.setKeys(options.keys);
             if (options.input)
                 this.setInput(options.input);
         },
@@ -38,11 +38,18 @@ define([
             var html = '<div class="table">';
             _.each(this.keys, function(row) {
                 html = html + '<div class="tr">';
-                var i, l;
+                var i, l, ch;
                 for (i = 0, l = row.length; i < l; i++) {
-                    html = html + '<div class="td">&nbsp;' +
-                            '<a class="btn digit-btn">' + row.charAt(i) + '</a>' +
-                            '</div>';
+                    ch = row.charAt(i);
+                    html = html + '<div class="td" style="font-size:1px">&nbsp;';
+                    if (ch == '#') {
+                        html = html + '<a class="btn" id="delete-btn"></a>';
+                    } else if (ch == '@') {
+                        html = html + '<a class="btn" id="ok-btn"></a>';
+                    } else {
+                        html = html + '<a class="btn digit-btn">' + ch + '</a>';
+                    }
+                    html = html + '</div>';
                 }
                 html = html + '</div>';
             });
@@ -51,16 +58,36 @@ define([
             return this;
         },
         setInput: function(input) {
-            this.input = (input instanceof $) ? input : $(input);
+            if (input) {
+                this.input = (input instanceof $) ? input : $(input);
+            } else {
+                this.input = $('input');
+            }
+            return this;
+        },
+        setKeys: function(keys) {
+            if (_.isString(keys)) {
+                this.keys = keys.split('|');
+            } else if (_.isArray(keys)) {
+                this.keys = keys;
+            } else {
+                this.keys = ['123', '456', '789', '#0@'];
+            }
+            return this;
         },
         click: function(event) {
-            var key = $(event.target).text(), value = this.input.val();
-            if (key == '<') {
-                if (value.length > 0) {
-                    this.input.val(value.substring(0, value.length - 1));
-                }
+            var key = $(event.target).text(),
+                    id = event.target.id,
+                    val = this.input.val();
+            if (id == 'delete-btn') {
+                this.input.val('');
+            } else if (id == 'ok-btn') {
+                app.router.navigate($('#forward-btn').attr('href'),
+                        {trigger: true});
             } else {
-                this.input.val(value + key);
+                if (val.length < parseInt(this.input.attr('maxlength'))) {
+                    this.input.val(this.input.val() + key);
+                }
             }
         }
     });

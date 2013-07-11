@@ -105,10 +105,14 @@ body {
     width: 100%;
 }
 
+.label {
+    padding: 20px 0;
+    display: block;
+}
+
 .td .label {
-    width: 100%;
     text-align: center;
-    padding: 20px;
+    width: 100%;
 }
 
 #home-btn, #info-btn, #back-btn, #forward-btn {
@@ -167,4 +171,43 @@ body {
     min-width: 128px;
     background:url(../images/button.png) no-repeat center; 
     font-size: 36px;
+}
+
+#delete-btn {
+    min-height: 128px;
+    min-width: 128px;
+    background:url(../images/delete.png) no-repeat center; 
+}
+
+#ok-btn {
+    min-height: 128px;
+    min-width: 128px;
+    background:url(../images/ok.png) no-repeat center; 
+}
+
+.icon {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.input {
+    width: 95%;
+    margin-bottom: 20px;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.payment-title {
+    width: 40%;
+}
+
+.payment-detail {
+    width: 100%;
+    margin-right: 50px;
+}
+
+.keyboard {
+    float: left;
 }
