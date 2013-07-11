@@ -23,6 +23,7 @@ require.config({
     paths: {
         // Libraries
         'jquery': 'libs/jquery/jquery-1.9.1.min',
+        'jquery.inputmask': 'libs/jquery/jquery.inputmask-2.2.66.min',
         'underscore': 'libs/underscore/underscore-min',
         'backbone': 'libs/backbone/backbone-min',
         'require': 'libs/require/require',
@@ -31,10 +32,12 @@ require.config({
         'applet': 'devices/applet',
         'templates': '../templates'
     },
-  
     shim: {
         'jquery': {
             exports: 'jQuery'
+        },
+        'jquery.inputmask': {
+            deps: ['jquery']
         },
         'underscore': {
             exports: '_'
@@ -44,7 +47,6 @@ require.config({
             exports: 'Backbone'
         }
     },
-    
     config: {
         //Set the config for the i18n
         i18n: {
@@ -54,9 +56,12 @@ require.config({
 
 });
 
+// Load JQuery plugins
+require(['jquery', 'jquery.inputmask']);
+
 // Set DOM Library for backbone
-require(['jquery', 'backbone'], function ($, Backbone) {
-    Backbone.setDomLibrary($)
+require(['jquery', 'backbone'], function($, Backbone) {
+    Backbone.setDomLibrary($);
 });
 
 require([
@@ -70,10 +75,11 @@ require([
     // Pass in our Router module and call it's initialize function
     'routers/router',
     'routers/informer'
-    ], function($, _, Backbone, app, router, informer){
-        // Run application when DOM model loaded
-        $(function () {
-            app.run();
-        });
+], function($, _, Backbone, app, router, informer) {
+    // Run application when DOM model loaded
+    $(function() {
+        app.run();
     });
+});
+
     
