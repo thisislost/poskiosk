@@ -41,7 +41,7 @@ define([
                 var i, l, ch;
                 for (i = 0, l = row.length; i < l; i++) {
                     ch = row.charAt(i);
-                    html = html + '<div class="td" style="font-size:1px">&nbsp;';
+                    html = html + '<div class="td" style="font-size: 1px">&nbsp;';
                     if (ch == '#') {
                         html = html + '<a class="btn" id="delete-btn"></a>';
                     } else if (ch == '@') {

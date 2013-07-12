@@ -15,4 +15,10 @@
         <product description="POS Printer Simulator" name="POSPrinter" url="http://poskiosk.org"/>
         <prop name="port" type="String" value="4002"/>
     </JposEntry>
-</JposEntries>
+    <JposEntry logicalName="Scanner">
+        <creation factoryClass="jpos.simulator.ServiceInstanceFactory" serviceClass="jpos.simulator.ScannerService"/>
+        <vendor name="JavaPOS Kiosk" url="http://poskiosk.org"/>
+        <jpos category="Scanner" version="1.13"/>
+        <product description="Scanner Simulator" name="Scanner" url="http://poskiosk.org"/>
+        <prop name="port" type="String" value="4003"/>
+    </JposEntry></JposEntries>

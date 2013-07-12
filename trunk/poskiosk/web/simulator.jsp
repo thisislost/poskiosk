@@ -61,6 +61,7 @@
                 var el = document.getElementById('dd_' + name);
                 toggle(el, dd_billacceptor);
                 toggle(el, dd_posprinter);
+                toggle(el, dd_scanner);
             }
             function selectStation(name) {
                 var el = document.getElementById('pp_' + name);
@@ -77,6 +78,7 @@
                 <select class="ui_change" id="dd_device" onchange="selectDevice(this.value);">
                     <option selected value="billacceptor">Bill Acceptor</option>
                     <option value="posprinter">POS Printer</option>
+                    <option value="scanner">Scanner</option>
                 </select>    
             </div>
             <div class="ui_content" id="dd_billacceptor">
@@ -219,6 +221,32 @@
                     </select>    
                 </form>
                 <form action="http://localhost:4002/power" target="output">
+                    <label class="ui_label" for="pp_power">Power state</label>
+                    <select class="ui_change" id="pp_power" name="state" onchange="this.form.submit();">
+                        <option value="off">OFF</option>
+                        <option value="offline">OFFLINE</option>
+                        <option value="off_offline">OFF_OFFLINE</option>
+                        <option selected value="online">ONLINE</option>
+                    </select>    
+                </form>
+            </div>
+            <div class="ui_content" id="dd_scanner" hidden>
+                <form action="http://localhost:4003/input" target="output">
+                    <label class="ui_label" for="sc_data">Scan data</label>
+                    <input class="ui_change" id="sc_data" name="data"/>
+                    <label class="ui_label" for="sc_type">Scan data type</label>
+                    <select class="ui_input" id="sc_type" name="type">
+                        <option value="Codabar">Codabar</option>
+                        <option selected value="Code128">Code128</option>
+                        <option value="Code39">Code39</option>
+                        <option value="DATAMATRIX">DATAMATRIX</option>
+                        <option value="EAN128">EAN128</option>
+                        <option value="QRCODE">QRCODE</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input class="ui_submit" type="submit" value="Input"/>
+                </form>
+                <form action="http://localhost:4003/power" target="output">
                     <label class="ui_label" for="pp_power">Power state</label>
                     <select class="ui_change" id="pp_power" name="state" onchange="this.form.submit();">
                         <option value="off">OFF</option>
