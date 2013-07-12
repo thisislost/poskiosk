@@ -208,11 +208,6 @@ public class POSPrinterService extends DeviceService implements POSPrinterServic
     }
 
     @Override
-    public boolean getCapCompareFirmwareVersion() throws JposException {
-        return false;
-    }
-
-    @Override
     public boolean getCapConcurrentPageMode() throws JposException {
         return false;
     }
@@ -224,11 +219,6 @@ public class POSPrinterService extends DeviceService implements POSPrinterServic
 
     @Override
     public boolean getCapSlpPageMode() throws JposException {
-        return false;
-    }
-
-    @Override
-    public boolean getCapUpdateFirmware() throws JposException {
         return false;
     }
 
@@ -298,42 +288,7 @@ public class POSPrinterService extends DeviceService implements POSPrinterServic
     }
 
     @Override
-    public void compareFirmwareVersion(String string, int[] ints) throws JposException {
-        throw new JposException(JposConst.JPOS_E_ILLEGAL);
-    }
-
-    @Override
     public void pageModePrint(int i) throws JposException {
-        throw new JposException(JposConst.JPOS_E_ILLEGAL);
-    }
-
-    @Override
-    public void updateFirmware(String string) throws JposException {
-        throw new JposException(JposConst.JPOS_E_ILLEGAL);
-    }
-
-    @Override
-    public boolean getCapStatisticsReporting() throws JposException {
-        return false;
-    }
-
-    @Override
-    public boolean getCapUpdateStatistics() throws JposException {
-        return false;
-    }
-
-    @Override
-    public void resetStatistics(String string) throws JposException {
-        throw new JposException(JposConst.JPOS_E_ILLEGAL);
-    }
-
-    @Override
-    public void retrieveStatistics(String[] strings) throws JposException {
-        throw new JposException(JposConst.JPOS_E_ILLEGAL);
-    }
-
-    @Override
-    public void updateStatistics(String string) throws JposException {
         throw new JposException(JposConst.JPOS_E_ILLEGAL);
     }
 
@@ -472,26 +427,6 @@ public class POSPrinterService extends DeviceService implements POSPrinterServic
 
     @Override
     public void markFeed(int i) throws JposException {
-    }
-
-    @Override
-    public int getCapPowerReporting() throws JposException {
-        return JposConst.JPOS_PR_ADVANCED;
-    }
-
-    @Override
-    public int getPowerNotify() throws JposException {
-        return powerNotify;
-    }
-
-    @Override
-    public void setPowerNotify(int i) throws JposException {
-        powerNotify = i;
-    }
-
-    @Override
-    public int getPowerState() throws JposException {
-        return powerState;
     }
 
     @Override

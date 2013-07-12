@@ -72,11 +72,6 @@ public class BillAcceptorService extends DeviceService implements BillAcceptorSe
     }
 
     @Override
-    public boolean getCapCompareFirmwareVersion() throws JposException {
-        return false;
-    }
-
-    @Override
     public boolean getCapDiscrepancy() throws JposException {
         return false;
     }
@@ -102,28 +97,8 @@ public class BillAcceptorService extends DeviceService implements BillAcceptorSe
     }
 
     @Override
-    public int getCapPowerReporting() throws JposException {
-        return JposConst.JPOS_PR_STANDARD;
-    }
-
-    @Override
     public boolean getCapRealTimeData() throws JposException {
         return true;
-    }
-
-    @Override
-    public boolean getCapStatisticsReporting() throws JposException {
-        return false;
-    }
-
-    @Override
-    public boolean getCapUpdateFirmware() throws JposException {
-        return false;
-    }
-
-    @Override
-    public boolean getCapUpdateStatistics() throws JposException {
-        return false;
     }
 
     @Override
@@ -135,32 +110,6 @@ public class BillAcceptorService extends DeviceService implements BillAcceptorSe
     public void setCurrencyCode(String string) throws JposException {
         currencyCode = string;
 
-    }
-
-    @Override
-    public int getDataCount() throws JposException {
-        return eventQueue.size() + eventStore.size();
-    }
-
-    @Override
-    public boolean getDataEventEnabled() throws JposException {
-        return dataEventEnabled;
-    }
-
-    @Override
-    public void setDataEventEnabled(boolean bln) throws JposException {
-        synchronized (eventQueue) {
-            dataEventEnabled = bln;
-            if (dataEventEnabled) {
-                synchronized (eventStore) {
-                    if (!eventStore.isEmpty()) {
-                        eventQueue.addAll(eventStore);
-                        eventStore.clear();
-                    }
-                }
-                eventQueue.notify();
-            }
-        }
     }
 
     @Override
@@ -236,17 +185,6 @@ public class BillAcceptorService extends DeviceService implements BillAcceptorSe
     }
 
     @Override
-    public void clearInput() throws JposException {
-        eventStore.clear();
-    }
-
-    @Override
-    public void compareFirmwareVersion(String string, int[] ints) throws JposException {
-        throw new JposException(JposConst.JPOS_E_ILLEGAL,
-                getErrorDescription(JposConst.JPOS_E_ILLEGAL));
-    }
-
-    @Override
     public void endDeposit(int i) throws JposException {
         if (unacceptedCounts.size() > 0) {
             throw new JposException(JposConst.JPOS_E_ILLEGAL,
@@ -279,30 +217,6 @@ public class BillAcceptorService extends DeviceService implements BillAcceptorSe
         }
         strings[0] = sb.toString();
         blns[0] = true;
-    }
-
-    @Override
-    public void resetStatistics(String string) throws JposException {
-        throw new JposException(JposConst.JPOS_E_ILLEGAL,
-                getErrorDescription(JposConst.JPOS_E_ILLEGAL));
-    }
-
-    @Override
-    public void retrieveStatistics(String[] strings) throws JposException {
-        throw new JposException(JposConst.JPOS_E_ILLEGAL,
-                getErrorDescription(JposConst.JPOS_E_ILLEGAL));
-    }
-
-    @Override
-    public void updateFirmware(String string) throws JposException {
-        throw new JposException(JposConst.JPOS_E_ILLEGAL,
-                getErrorDescription(JposConst.JPOS_E_ILLEGAL));
-    }
-
-    @Override
-    public void updateStatistics(String string) throws JposException {
-        throw new JposException(JposConst.JPOS_E_ILLEGAL,
-                getErrorDescription(JposConst.JPOS_E_ILLEGAL));
     }
 
     public void acceptCash(int i) {
