@@ -155,6 +155,7 @@ public class DeviceService implements BaseService, JposServiceInstance {
         state = JposConst.JPOS_S_ERROR;
         eventCallbacks = ec;
         state = JposConst.JPOS_S_IDLE;
+        autoDisable = false;
         int port = Integer.parseInt(jposEntry.getProp("port").getValueAsString());
         try {
             greeting = new GreetingServer(port);
@@ -207,6 +208,10 @@ public class DeviceService implements BaseService, JposServiceInstance {
         claimed = false;
     }
 
+    public int getCapPowerReporting() throws JposException {
+        return JposConst.JPOS_PR_ADVANCED;
+    }
+
     public int getPowerNotify() throws JposException {
         return powerNotify;
     }
@@ -233,6 +238,80 @@ public class DeviceService implements BaseService, JposServiceInstance {
                 fireEvent(new StatusUpdateEvent(eventCallbacks.getEventSource(), powerState));
             }
         }
+    }
+
+    public boolean getAutoDisable() throws JposException {
+        return autoDisable;
+    }
+
+    public void setAutoDisable(boolean bln) throws JposException {
+        autoDisable = bln;
+    }
+
+    public int getDataCount() throws JposException {
+        return eventQueue.size() + eventStore.size();
+    }
+
+    public void clearInput() throws JposException {
+        eventStore.clear();
+    }
+
+    public void clearInputProperties() throws JposException {
+    }
+
+    public boolean getDataEventEnabled() throws JposException {
+        return dataEventEnabled;
+    }
+
+    public void setDataEventEnabled(boolean bln) throws JposException {
+        synchronized (eventQueue) {
+            dataEventEnabled = bln;
+            if (dataEventEnabled) {
+                synchronized (eventStore) {
+                    if (!eventStore.isEmpty()) {
+                        eventQueue.addAll(eventStore);
+                        eventStore.clear();
+                    }
+                }
+                eventQueue.notify();
+            }
+        }
+    }
+
+    public boolean getCapCompareFirmwareVersion() throws JposException {
+        return false;
+    }
+
+    public boolean getCapUpdateFirmware() throws JposException {
+        return false;
+    }
+
+    public void compareFirmwareVersion(String string, int[] ints) throws JposException {
+        throw new JposException(JposConst.JPOS_E_ILLEGAL);
+    }
+
+    public void updateFirmware(String string) throws JposException {
+        throw new JposException(JposConst.JPOS_E_ILLEGAL);
+    }
+
+    public boolean getCapStatisticsReporting() throws JposException {
+        return false;
+    }
+
+    public boolean getCapUpdateStatistics() throws JposException {
+        return false;
+    }
+
+    public void resetStatistics(String string) throws JposException {
+        throw new JposException(JposConst.JPOS_E_ILLEGAL);
+    }
+
+    public void retrieveStatistics(String[] strings) throws JposException {
+        throw new JposException(JposConst.JPOS_E_ILLEGAL);
+    }
+
+    public void updateStatistics(String string) throws JposException {
+        throw new JposException(JposConst.JPOS_E_ILLEGAL);
     }
 
     @Override
@@ -318,6 +397,10 @@ public class DeviceService implements BaseService, JposServiceInstance {
                                     if (event instanceof DataEvent) {
                                         eventCallbacks.fireDataEvent(
                                                 (DataEvent) event);
+                                        dataEventEnabled = false;
+                                        if (autoDisable) {
+                                            setDeviceEnabled(false);
+                                        }
                                     } else if (event instanceof ErrorEvent) {
                                         eventCallbacks.fireErrorEvent(
                                                 (ErrorEvent) event);
@@ -349,6 +432,7 @@ public class DeviceService implements BaseService, JposServiceInstance {
     protected boolean claimed = false;
     protected int state = JposConst.JPOS_S_CLOSED;
     protected boolean deviceEnabled = false;
+    protected boolean autoDisable = false;
     protected boolean frozeEvents = false;
     protected final PriorityQueue<JposEvent> eventQueue =
             new PriorityQueue<>(100, new EventComparator());
