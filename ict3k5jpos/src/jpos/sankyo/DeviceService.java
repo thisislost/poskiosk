@@ -231,6 +231,10 @@ public class DeviceService implements BaseService, JposServiceInstance, CardRead
                                     if (event instanceof DataEvent) {
                                         eventCallbacks.fireDataEvent(
                                                 (DataEvent) event);
+                                        dataEventEnabled = false;
+                                        if (autoDisable) {
+                                            setDeviceEnabled(false);
+                                        }
                                     } else if (event instanceof ErrorEvent) {
                                         eventCallbacks.fireErrorEvent(
                                                 (ErrorEvent) event);
@@ -287,15 +291,6 @@ public class DeviceService implements BaseService, JposServiceInstance, CardRead
                 }
             } else {
                 eventStore.add(event);
-            }
-            if (autoDisable && (event instanceof DataEvent)) {
-                try {
-                    setDeviceEnabled(false);
-                } catch (JposException e) {
-                    fireEvent(new ErrorEvent(eventCallbacks.getEventSource(),
-                            e.getErrorCode(), e.getErrorCodeExtended(),
-                            JposConst.JPOS_EL_INPUT, JposConst.JPOS_ER_CLEAR));
-                }
             }
         }
     }
